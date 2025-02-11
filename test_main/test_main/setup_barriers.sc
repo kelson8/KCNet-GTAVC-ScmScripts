@@ -12,11 +12,11 @@ SET_DEATHARREST_STATE OFF
 {
 
 // Toggle this right here.
-VAR_INT barriersEnabled
-barriersEnabled = 0
+// VAR_INT barriersEnabled
+// barriersEnabled = 1
 
 // Only run if enabled
-IF barriersEnabled = 1
+// IF barriersEnabled = 1
 
 
 // Disable ped roads on these paths.
@@ -133,7 +133,8 @@ DONT_REMOVE_OBJECT taxi_closed
 CREATE_OBJECT_NO_OFFSET b_hse_doors -640.012 -1485.941 15.457 boat_closed
 DONT_REMOVE_OBJECT boat_closed
 
-VAR_INT flag_strip_doors_closed flag_strip_doors_open strip_doors
+// VAR_INT flag_strip_doors_closed flag_strip_doors_open strip_doors
+// VAR_INT strip_doors
 CREATE_OBJECT_NO_OFFSET stripclbdrclsd 97.203 -1469.731 10.578 strip_doors
 DONT_REMOVE_OBJECT strip_doors
 
@@ -143,7 +144,7 @@ CREATE_OBJECT_NO_OFFSET strpbckdrclsd 68.988 -1444.242 10.727 strip_door_poledan
 DONT_REMOVE_OBJECT strip_door_poledance
 
 
-ENDIF // barriersEnabled = 1
+// ENDIF // barriersEnabled = 1
 }
 
 MISSION_END

@@ -23,6 +23,41 @@
     // https://github.com/ThirteenAG/III.VC.SA.CLEOScripts/tree/master/gtasa
     // LVAR_INT scplayer
 
+    // Toggles
+    // 1 = On
+    // 0 = Off
+
+    // Add most blips to the game
+
+    LVAR_INT addBlipsEnabled
+    addBlipsEnabled = 1
+
+    // Setup the Pay N Sprays and other garages.
+    LVAR_INT setupGaragesEnabled
+    setupGaragesEnabled = 1
+
+    // Spawn the vehicles I have setup
+    LVAR_INT spawnVehiclesEnabled
+    spawnVehiclesEnabled = 1
+
+
+    // Enable the setup_game.sc file, sets never wanted and infinte health if toggled in here so far.
+    LVAR_INT setupGameEnabled
+    setupGameEnabled = 1
+
+    // Setup the teleporter markers, incomplete
+    // LVAR_INT setupTeleportersEnabled
+    // setupTeleportersEnabled = 1
+    //
+
+    // Add the barriers for the islands
+    LVAR_INT setupBarriersEnabled
+    setupBarriersEnabled = 0
+
+    // Toggle the interiors test.
+    // TODO Fix this, it compiles but doesn't do anything yet.
+    // LVAR_INT interiorsTestEnabled 
+    // interiorsTestEnabled = 1
 
     // Get the player, the player char and mission status.
     VAR_INT player scplayer player_group
@@ -30,14 +65,17 @@
 
     // Spawn coords
     VAR_FLOAT spawnX spawnY spawnZ spawnHeading
-    // spawnX = 1055.150 
-    // spawnY = -942.547
-    // spawnZ = 14.2
+    // Original.
+    // spawnX = -847.1
+    // spawnY = -596.0
+    // spawnZ = 12.0
+    // spawnHeading = 16.6
 
+    // New
     spawnX = -847.1
     spawnY = -596.0
     spawnZ = 12.0
-    spawnHeading = -92.797
+    spawnHeading = 16.6
 
     // Each script in a multifile should have a unique name.
     // This unique name may be used later on in a TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME to kill the script.
@@ -52,15 +90,15 @@
     // Create and spawn the player
     
     CREATE_PLAYER 0 spawnX spawnY spawnZ player
-    SET_PLAYER_HEADING player spawnHeading
+    // SET_PLAYER_HEADING player spawnHeading
+    // SET_PLAYER_HEADING player spawnHeading
     GET_PLAYER_CHAR player scplayer
+    SET_CHAR_HEADING scplayer spawnHeading
 
-    // TODO Fix for VC
-    // Disable the Callhan bridge barriers.
-    // SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 1027.26 -933.796 15.042 50.0 indhelix_barrier FALSE 
-    // SWAP_NEAREST_BUILDING_MODEL 1027.26 -933.796 15.042 50.0 indhelix_barrier LOD_land014  
-    //
-    
+    // TODO Test this
+    // RESTORE_CAMERA_JUMPCUT
+    // Oops this breaks it.
+    // POINT_CAMERA_AT_POINT spawnX spawnY spawnZ JUMP_CUT
 
     // A multifile must as well tell the game logic which variable to lookup when testing
     // whether the player is in a mission.
@@ -77,6 +115,8 @@
     SET_PLAYER_CONTROL player ON
     DO_FADE 0 FADE_IN
 
+
+
     // TODO Fix this
     // Test car generator
     // LVAR_INT gen_car124
@@ -91,24 +131,48 @@
     // I had to move this above the GOSUB give_weapons for it to work.
     // START_NEW_SCRIPT spawn_car1
 
-    // Move vehicle spawners into here
-    LAUNCH_MISSION spawn_vehicles.sc
+    // Setup most of the imports for the scripts
+    LAUNCH_MISSION import.sc
+    //
 
-    // Test adding blips
-    LAUNCH_MISSION add_blips.sc
+    IF spawnVehiclesEnabled = 1
+    // Move vehicle spawners into here
+        LAUNCH_MISSION spawn_vehicles.sc
+    ENDIF
+
+    // Add most blips to the game
+    IF addBlipsEnabled = 1
+        LAUNCH_MISSION add_blips.sc
+    ENDIF
 
     // Setup the Pay N Sprays and other garages.
-    LAUNCH_MISSION setup_garages.sc
+    IF setupGaragesEnabled = 1
+        LAUNCH_MISSION setup_garages.sc
+    ENDIF
 
     // Setup the game, sets never wanted and infinte health if toggled in here so far.
     // TODO Add more to this later.
-    LAUNCH_MISSION setup_game.sc
+    IF setupGameEnabled = 1
+        LAUNCH_MISSION setup_game.sc
+    ENDIF
 
     // Setup the teleporters
-    // LAUNCH_MISSION setup_teleporters.sc
+    // IF setupTeleportersEnabled = 1
+        // LAUNCH_MISSION setup_teleporters.sc
+    // ENDIF
 
-    // Add the barriers for the islands, can be toggled in this file also.
-    LAUNCH_MISSION setup_barriers.sc
+    // Add the barriers for the islands
+    IF setupBarriersEnabled = 1
+        LAUNCH_MISSION setup_barriers.sc
+    ENDIF
+
+    // TODO Fix this, it doesn't work yet
+    // IF interiorsTestEnabled = 1
+    //     
+    //     LAUNCH_MISSION interiors.sc
+    //     // START_NEW_SCRIPT interiors
+    // ENDIF
+
 
     // Set the player health and other stuff
 
