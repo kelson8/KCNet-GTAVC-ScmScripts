@@ -39,48 +39,18 @@
     spawnZ = 12.0
     spawnHeading = -92.797
 
-    // Pay N Sprays
-    VAR_INT sprayshop1
-
-    // Toggles
-    // 1 = On
-    // 0 = Off
-    // Toggle never wanted
-    VAR_INT neverWanted
-    neverWanted = 0
-
-    // I couldn't get this working in a function.
-    // Set never wanted
-    IF neverWanted = 1
-        SET_MAX_WANTED_LEVEL 0
-    ENDIF
-
-    // Toggle a bunch of money given to the player.
-    VAR_INT maxMoney
-    maxMoney = 0
-    //
-
-
-
     // Each script in a multifile should have a unique name.
     // This unique name may be used later on in a TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME to kill the script.
     SCRIPT_NAME main
 
-    // We'll learn more about this command later.
     SET_DEATHARREST_STATE OFF
 
-    
-    // The following commands should be used exactly as follow, with the first parameter as 0.
-    // The compiler will, during the compilation process, replace the zeros with the correct values found during the compilation process.
     SET_TOTAL_NUMBER_OF_MISSIONS 0
     SET_PROGRESS_TOTAL 0
     SET_COLLECTABLE1_TOTAL 0
 
     // Create and spawn the player
     
-    // TODO Move player functions into this.
-    // GOSUB setup_player
-
     CREATE_PLAYER 0 spawnX spawnY spawnZ player
     SET_PLAYER_HEADING player spawnHeading
     GET_PLAYER_CHAR player scplayer
@@ -124,9 +94,26 @@
     // Move vehicle spawners into here
     LAUNCH_MISSION spawn_vehicles.sc
 
+    // Test adding blips
+    LAUNCH_MISSION add_blips.sc
+
+    // Setup the Pay N Sprays and other garages.
+    LAUNCH_MISSION setup_garages.sc
+
+    // Setup the game, sets never wanted and infinte health if toggled in here so far.
+    // TODO Add more to this later.
+    LAUNCH_MISSION setup_game.sc
+
+    // Setup the teleporters
+    // LAUNCH_MISSION setup_teleporters.sc
+
+    // Add the barriers for the islands, can be toggled in this file also.
+    LAUNCH_MISSION setup_barriers.sc
+
     // Set the player health and other stuff
+
     GOSUB give_weapons
-    GOTO main_loop
+    // GOTO main_loop
 
 
     // GOSUB setup_player
@@ -165,17 +152,6 @@
     //
     // Despite the command name, this does not create missions per se.
     // Just think of this as a version of START_NEW_SCRIPT but within a new file.
-
-    // TODO Add working Pay N Spray.
-    // LAUNCH_MISSION import.sc
-
-
-
-
-    // TODO Test a Pay N Spray
-    // https://library.sannybuilder.com/#/gta3/script/enums/GarageType 
-    // 5 = GARAGE_RESPRAY
-    // SET_GARAGE 921.0 -367.5 9.8 928.7 -355.1 14.8 5 sprayshop1 //Pay N Spray #1.
 
     // Make it to where the player cannot sprint
     // DISABLE_PLAYER_SPRINT player TRUE
@@ -235,32 +211,6 @@
     GIVE_WEAPON_TO_CHAR scplayer WEAPONTYPE_MP5 9999
     // GIVE_WEAPON_TO_CHAR scplayer WEAPONTYPE_SHOTGUN 9999
 
-    // GOTO main_loop
-
-
-// Setup the player
-// TODO Move player functions into here.
-// This crashes if I gosub to it..
-    setup_player:
-    
-    WAIT 0
-
-    // // Give the player a bunch of money
-    // IF maxMoney = 1
-    //     ADD_SCORE player 100000
-    // ENDIF
-
-    // // Give the player max health and armor on hand
-    // // The health can go up to 1000, I had no idea the games limit was so high.
-    // SET_CHAR_HEALTH scplayer 250
-    // ADD_ARMOUR_TO_CHAR scplayer 100
-    
-
-
-
-
-
-    // Go back into the main loop.
     // GOTO main_loop
 
 
