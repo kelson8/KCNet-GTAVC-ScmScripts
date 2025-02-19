@@ -8,7 +8,8 @@ setlocal
 @REM SET /p CONFIRM=Replace file? (Y/[N])? 
 @REM if /I "%CONFIRM%" NEQ "Y" GOTO END
 
-copy "test_main.scm" "C:\Rockstar Games\GTA Vice City\data\main.scm"
+@REM copy "test_main.scm" "C:\Rockstar Games\GTA Vice City\data\main.scm"
+copy "test_main.scm" "C:\Rockstar Games\GTA Vice City\ViceExtended\data\freeroam_miami.scm"
 
 ::echo File copied
 @REM :END

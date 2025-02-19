@@ -175,13 +175,14 @@ SET_DEATHARREST_STATE OFF //stops script being terminated if Player dies/arreste
   
 
 
+START_NEW_SCRIPT interiors
+
+{
+// I finally figured this out!! I had to move this into here and now the interiors work
+// 2-19-2025 @ 1:41AM
 interiors:
 
 flag_eject = 0
-{
-// SCRIPT_NAME SHIT
-
-
 
 GOTO bingle_bongle
 CREATE_OBJECT_NO_OFFSET stripclbdropen 97.203 -1469.731 10.578 strip_doors

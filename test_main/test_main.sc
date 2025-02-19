@@ -45,6 +45,16 @@
     LVAR_INT setupGameEnabled
     setupGameEnabled = 1
 
+    // Enable the clothes pickups around the map.
+    // TODO Fix these to change the players clothes, they show up on the map.
+    LVAR_INT clothesPickupsEnabled
+    clothesPickupsEnabled = 1
+
+    // Enable the weapon pickups I create.
+    // TODO Fix these, why aren't these working?
+    LVAR_INT weaponPickupsEnabled
+    weaponPickupsEnabled = 0
+
     // Setup the teleporter markers, incomplete
     // LVAR_INT setupTeleportersEnabled
     // setupTeleportersEnabled = 1
@@ -55,9 +65,10 @@
     setupBarriersEnabled = 0
 
     // Toggle the interiors test.
-    // TODO Fix this, it compiles but doesn't do anything yet.
-    // LVAR_INT interiorsTestEnabled 
-    // interiorsTestEnabled = 1
+    // This seems to work properly now, tested at the police station
+    // with the clothes6 teleport in my KCNet trainer.
+    LVAR_INT interiorsTestEnabled 
+    interiorsTestEnabled = 1
 
     // Get the player, the player char and mission status.
     VAR_INT player scplayer player_group
@@ -156,6 +167,16 @@
         LAUNCH_MISSION setup_game.sc
     ENDIF
 
+    // Enable the clothes pickups on the map
+    IF clothesPickupsEnabled = 1
+        LAUNCH_MISSION create_clothes_pickups.sc
+    ENDIF
+
+    // Enable the weapon pickups I create
+    IF weaponPickupsEnabled = 1
+        LAUNCH_MISSION create_weapon_pickups.sc
+    ENDIF
+
     // Setup the teleporters
     // IF setupTeleportersEnabled = 1
         // LAUNCH_MISSION setup_teleporters.sc
@@ -166,12 +187,10 @@
         LAUNCH_MISSION setup_barriers.sc
     ENDIF
 
-    // TODO Fix this, it doesn't work yet
-    // IF interiorsTestEnabled = 1
-    //     
-    //     LAUNCH_MISSION interiors.sc
-    //     // START_NEW_SCRIPT interiors
-    // ENDIF
+    // I finally got this working, starting the script is inside the interiors.sc file.
+    IF interiorsTestEnabled = 1
+        LAUNCH_MISSION interiors.sc
+    ENDIF
 
 
     // Set the player health and other stuff

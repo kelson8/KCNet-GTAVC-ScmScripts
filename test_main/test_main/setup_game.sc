@@ -11,10 +11,10 @@ SET_DEATHARREST_STATE OFF
     // 1 = On
     // 0 = Off
     LVAR_INT neverWanted
-    neverWanted = 1
+    neverWanted = 0
 
     LVAR_INT infiniteHealth
-    infiniteHealth = 1
+    infiniteHealth = 0
 
     LVAR_INT extraMoney
     extraMoney = 1

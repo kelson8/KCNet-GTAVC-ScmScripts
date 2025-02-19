@@ -10,10 +10,9 @@ SCRIPT_NAME import
 // But it's most likely you want to turn off this on subscripts.
 SET_DEATHARREST_STATE OFF
 
-// These are in interiors.sc, but I disabled that file
-// TODO Remove from here once I fix it.
-VAR_INT flag_player_in_stripclub flag_player_in_mall player_car_interiors
-VAR_INT flag_strip_doors_closed flag_strip_doors_open strip_doors
+// These are in interiors.sc
+// VAR_INT flag_player_in_stripclub flag_player_in_mall player_car_interiors
+// VAR_INT flag_strip_doors_closed flag_strip_doors_open strip_doors
 
 
 VAR_INT counter_60_percent
@@ -53,13 +52,5 @@ VAR_INT weapon_model_slot_5 weapon_model_slot_6 weapon_model_slot_7 weapon_model
 VAR_INT weapon_model_slot_9
 
 
-// I'll stop here because whatever you would use START_NEW_SCRIPT for, you can also use subscript for.
-// Here are some of the uses of subscripts in the trilogy: Unique Stunt Jumps, Rampages, Car Import Submissions...
-
 MISSION_END     // Terminates the script.
 
-// Test below
-
-// some_random_gosub:
-// RETURN
-// // you can use GOSUB some_random_gosub from anywhere now.
