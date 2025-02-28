@@ -48,7 +48,7 @@
     // Enable the clothes pickups around the map.
     // TODO Fix these to change the players clothes, they show up on the map.
     LVAR_INT clothesPickupsEnabled
-    clothesPickupsEnabled = 1
+    clothesPickupsEnabled = 0
 
     // Enable the weapon pickups I create.
     // TODO Fix these, why aren't these working?
@@ -70,23 +70,32 @@
     LVAR_INT interiorsTestEnabled 
     interiorsTestEnabled = 1
 
+    // This should enable the test sliding gate at my Gate #1 warp in the KCNet Trainer.
+    LVAR_INT gate1TestEnabled
+    gate1TestEnabled = 1
+
     // Get the player, the player char and mission status.
     VAR_INT player scplayer player_group
     VAR_INT flag_player_on_mission
 
     // Spawn coords
     VAR_FLOAT spawnX spawnY spawnZ spawnHeading
-    // Original.
+    // Original
+    
     // spawnX = -847.1
     // spawnY = -596.0
     // spawnZ = 12.0
     // spawnHeading = 16.6
 
     // New
-    spawnX = -847.1
-    spawnY = -596.0
-    spawnZ = 12.0
-    spawnHeading = 16.6
+    // Airport
+    // spawnX = -1430.4
+    spawnX = -1425.4
+    // spawnY = -1141.7
+    spawnY = -1130.7
+    // spawnZ = 14.8
+    spawnZ = 14.8
+    spawnHeading = 101.2
 
     // Each script in a multifile should have a unique name.
     // This unique name may be used later on in a TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME to kill the script.
