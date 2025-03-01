@@ -156,11 +156,6 @@ SET_DEATHARREST_STATE OFF
         SET_CAR_HEADING airportCar4 airportCar4Heading
 }
 
-/*
-Location #4
- Y:  Z: 15.2
-*/
-
 //***************** End airport vehicle spawners ******************/
 
 //***************** Begin vehicle main loop ******************/ 

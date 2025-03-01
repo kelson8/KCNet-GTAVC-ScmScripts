@@ -56,9 +56,9 @@
     weaponPickupsEnabled = 0
 
     // Setup the teleporter markers, incomplete
-    // LVAR_INT setupTeleportersEnabled
-    // setupTeleportersEnabled = 1
-    //
+    LVAR_INT setupTeleportersEnabled
+    setupTeleportersEnabled = 1
+    
 
     // Add the barriers for the islands
     LVAR_INT setupBarriersEnabled
@@ -74,6 +74,9 @@
     LVAR_INT gate1TestEnabled
     gate1TestEnabled = 1
 
+    LVAR_INT setupWeaponsEnabled
+    setupWeaponsEnabled = 1
+
     // Get the player, the player char and mission status.
     VAR_INT player scplayer player_group
     VAR_INT flag_player_on_mission
@@ -82,20 +85,17 @@
     VAR_FLOAT spawnX spawnY spawnZ spawnHeading
     // Original
     
-    // spawnX = -847.1
-    // spawnY = -596.0
-    // spawnZ = 12.0
-    // spawnHeading = 16.6
+    spawnX = -847.1
+    spawnY = -596.0
+    spawnZ = 12.0
+    spawnHeading = 16.6
 
     // New
     // Airport
-    // spawnX = -1430.4
-    spawnX = -1425.4
-    // spawnY = -1141.7
-    spawnY = -1130.7
+    // spawnX = -1425.4
+    // spawnY = -1130.7
     // spawnZ = 14.8
-    spawnZ = 14.8
-    spawnHeading = 101.2
+    // spawnHeading = 101.2
 
     // Each script in a multifile should have a unique name.
     // This unique name may be used later on in a TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME to kill the script.
@@ -187,9 +187,9 @@
     ENDIF
 
     // Setup the teleporters
-    // IF setupTeleportersEnabled = 1
-        // LAUNCH_MISSION setup_teleporters.sc
-    // ENDIF
+    IF setupTeleportersEnabled = 1
+        LAUNCH_MISSION setup_teleporters.sc
+    ENDIF
 
     // Add the barriers for the islands
     IF setupBarriersEnabled = 1
@@ -201,10 +201,17 @@
         LAUNCH_MISSION interiors.sc
     ENDIF
 
+    // Give the player weapons
+    IF setupWeaponsEnabled = 1
+        LAUNCH_MISSION setup_weapons.sc
+    ENDIF
+
 
     // Set the player health and other stuff
 
     GOSUB give_weapons
+
+
     // GOTO main_loop
 
 
@@ -269,73 +276,6 @@
     WAIT 0
 
     GOTO main_loop
-
-
-// Give the player weapons
-
-    give_weapons:
-    WAIT 0
-
-    // Pistol, MP5, and Minigun
-    REQUEST_MODEL COLT45
-    REQUEST_MODEL MP5LNG
-    WHILE NOT HAS_MODEL_LOADED COLT45
-    OR NOT HAS_MODEL_LOADED MP5LNG
-    // OR NOT HAS_MODEL_LOADED MINIGUN
-        WAIT 0
-    ENDWHILE
-
-    // Minigun
-    // REQUEST_MODEL MINIGUN
-    // WHILE 
-    //     WAIT 0
-    // ENDWHILE
-
-    // Shotgun
-    // REQUEST_MODEL SHOTGSPA
-    // WHILE NOT HAS_MODEL_LOADED SHOTGSPA
-    //     WAIT 0
-    // ENDWHILE
-
-
-    GIVE_WEAPON_TO_CHAR scplayer WEAPONTYPE_PISTOL 9999
-    // GIVE_WEAPON_TO_CHAR scplayer WEAPONTYPE_MINIGUN 9999
-    GIVE_WEAPON_TO_CHAR scplayer WEAPONTYPE_MP5 9999
-    // GIVE_WEAPON_TO_CHAR scplayer WEAPONTYPE_SHOTGUN 9999
-
-    // GOTO main_loop
-
-
-// Teleport to the hot dog stands
-// {
-//     cart_teleport:
-//     WAIT 0
-//     IF IS_PLAYER_PLAYING player
-//         IF IS_CHAR_IN_AREA_ON_FOOT_3D scplayer (-15.0, 5.0 4.0) (-14.0 2.0 0.0) TRUE
-//             REQUEST_COLLISION -2157.6257 -425.5779
-//             LOAD_ALL_MODELS_NOW
-//             SET_CHAR_COORDINATES scplayer -2157.6257 -425.5779 -100.0
-//             ADD_SCORE player 100 // some money to buy food
-//         ENDIF
-//     ENDIF
-//     GOTO cart_teleport
-// }
-
-// Teleport back to spawn
-// This doesn't work for some reason.
-// TODO Fix this part to work.
-// {
-//     teleport_cart_spawn:
-//     WAIT 0
-//     IF IS_PLAYER_PLAYING player
-//         IF IS_CHAR_IN_AREA_ON_FOOT_3D scplayer (-2160.020, -421.998, 35.335) (-2161.020, -418.998, 35.335) TRUE
-//             REQUEST_COLLISION -15.0, 5.0
-//             LOAD_ALL_MODELS_NOW
-//             SET_CHAR_COORDINATES scplayer 0.0 0.0 3.0
-//         ENDIF
-//     ENDIF
-//     GOTO teleport_cart_spawn
-// }
 
 // TODO Setup a ped spawner
 // Well this doesn't crash, but it doesn't work either..

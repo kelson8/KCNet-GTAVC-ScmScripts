@@ -15,6 +15,18 @@ SET_DEATHARREST_STATE OFF
 // VAR_INT flag_strip_doors_closed flag_strip_doors_open strip_doors
 
 
+VAR_FLOAT airportX airportY airportZ airportHeading
+airportX = -1425.4
+airportY = -1130.7
+airportZ = 14.8
+airportHeading = 101.2
+
+VAR_FLOAT airport1TeleportX airport1TeleportY airport1TeleportZ
+airport1TeleportX = -1438.4
+airport1TeleportY = -1113.4
+airport1TeleportZ = 14.8
+
+
 VAR_INT counter_60_percent
 counter_60_percent = 0
 
