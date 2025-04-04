@@ -80,6 +80,13 @@
     LVAR_INT setupWeaponsEnabled
     setupWeaponsEnabled = 1
 
+    // Enable the test for spawning peds
+    // This seems to work, spawn a ped and a vehicle
+    // Sometimes it doesn't spawn one or the other though.
+    LVAR_INT spawnPedsTestEnabled
+    spawnPedsTestEnabled = 0
+
+
     // Get the player, the player char and mission status.
     VAR_INT player scplayer player_group
     VAR_INT flag_player_on_mission
@@ -209,46 +216,24 @@
         LAUNCH_MISSION setup_weapons.sc
     ENDIF
 
+    // Enable the test for spawning peds
+    IF spawnPedsTestEnabled = 1
+        LAUNCH_MISSION setup_peds.sc
+    ENDIF
 
-    // Set the player health and other stuff
 
-    GOSUB give_weapons
-
+    // I don't think this is needed
+    // GOSUB give_weapons
 
     // GOTO main_loop
 
-
     // GOSUB setup_player
-
-
-    // Disable traffic
-    // SET_CAR_DENSITY_MULTIPLIER 0.0
-    
-    // Disable peds
-    // SET_PED_DENSITY_MULTIPLIER 0.0
-
-    // Give the player a few weapons to start off.
-    // REQUEST_MODEL UZI
-    // WHILE NOT HAS_MODEL_LOADED UZI
-    //     WAIT 0
-    // ENDWHILE
-
-    // REQUEST_MODEL MINIGUN
-    // WHILE NOT HAS_MODEL_LOADED MINIGUN
-    //     WAIT 0
-    // ENDWHILE
-
-    // GIVE_WEAPON_TO_CHAR scplayer WEAPONTYPE_UZI 9999
-    // GIVE_WEAPON_TO_CHAR scplayer WEAPONTYPE_MINIGUN 9999
 
     // Put an uzi on the ground as a pickup.
     
     // LVAR_INT pickup_weapon
     // CREATE_PICKUP_WITH_AMMO UZI PICKUP_ON_STREET_SLOW 1000 5.0 5.0 3.0 pickup_weapon
     //
-
-    // Make it to where the player has infinite sprint
-    // SET_PLAYER_NEVER_GETS_TIRED player 1
 
     // Now let's start some subscripts.
     //
@@ -258,13 +243,6 @@
     // Make it to where the player cannot sprint
     // DISABLE_PLAYER_SPRINT player TRUE
 
-    // IF IS_CHAR_DEAD player
-
-    // Set the max wanted level to 0
-    // SET_MAX_WANTED_LEVEL 0
-
-    // Make the player invincible
-    // SET_CHAR_PROOFS scplayer TRUE TRUE TRUE TRUE TRUE
 
     // Play the mission passed tune
     // PLAY_MISSION_PASSED_TUNE 2
@@ -292,31 +270,3 @@
 
 
     GOTO main_loop
-
-// TODO Setup a ped spawner
-// Well this doesn't crash, but it doesn't work either..
-// {
-//     LVAR_INT ped1
-//     ped_spawn1:
-
-//     WAIT 0
-
-//     // Load the model
-//     WHILE NOT HAS_MODEL_LOADED BFYPRO
-// 		WAIT 0
-// 	ENDWHILE
-
-//     CREATE_CHAR PEDTYPE_CIVFEMALE BFYPRO 9.808 0.982 5.109 ped1
-
-    // TODO Possibly mark the model as no longer needed
-
-    // WAIT0
-    // // Load models
-    // // 023C: load_special_actor 'CAT' as 1 // models 290-299038B: 
-    // //load_requested_models
-    // // :MODEL_LOAD
-    // if 823D:   not special_actor 1 loaded 
-    // else_jump @MODEL_SPAWN 
-    // WAIT 0 
-    // GOTO @MODEL_LOAD :MODEL_SPAWN
-// }

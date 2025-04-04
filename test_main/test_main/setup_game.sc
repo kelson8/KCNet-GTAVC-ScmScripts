@@ -21,7 +21,15 @@ SET_DEATHARREST_STATE OFF
 
     LVAR_INT infiniteStamina
     infiniteStamina = 1
-    
+
+    // Set the traffic and vehicle density to 0 if toggled on
+    LVAR_INT trafficDisabled
+    trafficDisabled = 0
+
+
+    LVAR_INT pedsToggleDisabled
+    pedsToggleDisabled = 0
+    //
 
     main_setup:
     WAIT 0
@@ -51,6 +59,16 @@ SET_DEATHARREST_STATE OFF
     // Set infinite stamina
     IF infiniteStamina = 1
         SET_PLAYER_NEVER_GETS_TIRED player TRUE
+    ENDIF
+
+    IF trafficDisabled = 1
+    // Disable traffic
+        SET_CAR_DENSITY_MULTIPLIER 0.0
+    ENDIF
+
+    IF trafficDisabled = 1
+    // Disable peds
+        SET_PED_DENSITY_MULTIPLIER 0.0
     ENDIF
 }
 
