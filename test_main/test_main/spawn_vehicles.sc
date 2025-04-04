@@ -117,6 +117,7 @@ SET_DEATHARREST_STATE OFF
     LVAR_FLOAT airportCar3X airportCar3Y airportCar3Z airportCar3Heading
     airportCar3X = -1455.7
     // airportCar3Y = -1141.5
+
     airportCar3Y = -1128.1
     airportCar3Z = 15.2
     airportCar3Heading = -82.793
@@ -154,6 +155,23 @@ SET_DEATHARREST_STATE OFF
         CREATE_CAR MAVERICK airportCar4X airportCar4Y airportCar4Z airportCar4
 
         SET_CAR_HEADING airportCar4 airportCar4Heading
+
+    // Spawn a Blood Ring Badger A in airport spot #5
+    VAR_INT airportCar5
+    LVAR_FLOAT airportCar5X airportCar5Y airportCar5Z airportCar5Heading
+    airportCar5X = -1455.7
+    // airportCar3Y = -1141.5
+    airportCar5Y = -1158.1
+    airportCar5Z = 15.2
+    airportCar5Heading = -82.793
+
+    REQUEST_MODEL HOTRINA
+        WHILE NOT HAS_MODEL_LOADED HOTRINA
+            WAIT 0
+        ENDWHILE
+        CREATE_CAR HOTRINA airportCar5X airportCar5Y airportCar5Z airportCar5
+
+        SET_CAR_HEADING airportCar5 airportCar5Heading
 }
 
 //***************** End airport vehicle spawners ******************/

@@ -18,6 +18,9 @@
     // This time, the code makes logical sense and **actually works**. But the variables are misplaced, which is bad for custom scripts.
     // Please check the stripped multifiles in the other thread (which?) for an actual base multifile source code.
 
+    // Set the players vehicle variable
+    VAR_INT playerVehicle
+
 
     // https://gtaforums.com/topic/876461-learn-gta3script-in-y-minutes/
     // https://github.com/ThirteenAG/III.VC.SA.CLEOScripts/tree/master/gtasa
@@ -266,14 +269,27 @@
     // Play the mission passed tune
     // PLAY_MISSION_PASSED_TUNE 2
 
+    // Go to the main loop
+    // GOTO main_loop
+
 }
 // SCRIPT_END
 
 // This is required.
 // Main loop
     main_loop:
-    // WAIT 250
+
+    // TODO Fix this to work, not sure why it's not running in here.
+    // IF IS_PLAYER_IN_ANY_HELI player
+    //     EXPLODE_PLAYER_HEAD player
+    //     STORE_CAR_CHAR_IS_IN scplayer playerVehicle
+    //     EXPLODE_CAR playerVehicle
+    //     // SET_PLAYER_HEALTH player 0
+    // ENDIF
+
     WAIT 0
+
+
 
     GOTO main_loop
 
