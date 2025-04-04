@@ -38,7 +38,8 @@ To something like this, or wherever your GTA Vice City is located.
 If your GTA Vice City is located in the 'Rockstar Games' folder like above:
 copy "test_main.scm" "C:\Rockstar Games\GTA Vice City\data\freeroam_miami.scm"
 
-To replace the main.scm:
+To replace the main.scm, change the copy line to this:
+copy "test_main.scm" "C:\Rockstar Games\GTA Vice City\data\main.scm"
 
 
 ```
